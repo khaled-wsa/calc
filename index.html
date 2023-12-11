@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Almarai&display=swap" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <style>
         body {
             font-family: 'Almarai', sans-serif;
@@ -52,10 +53,18 @@
                         <input type="text" class="form-control" id="bmEgp" readonly>
                     </div>
                 </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label><b>فارق السعر بالجنيه المصري:</b></label>
+                            <input type="text" class="form-control text-danger" id="priceDifferenceEgp" readonly>
+                        </div>
+                    </div>
+    
             </div>
             
             <hr>
-
+            <h6>في حال التحويل بسعر البنك باستخدام السوق السوداء:</h6>
+<hr>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -88,7 +97,8 @@
             
             let sarAmount = document.getElementById('amountSAR').value;
             let egpAmountBank = sarAmount * sarToEgpBankRate; // EGP you get for your SAR at bank rate
-            let egpAmountBM = sarAmount * sarToEgpBlackMarketRate; // EGP you get for your SAR at bank rate
+            let egpAmountBM = sarAmount * sarToEgpBlackMarketRate; // EGP you get for your SAR at black market rate
+            let priceDifferenceEgp = egpAmountBM - egpAmountBank; // Difference in EGP between black market and bank rate
             let sarAmountNeededBlackMarket = egpAmountBank / sarToEgpBlackMarketRate; // SAR you would need to get the same EGP at black market rate
             let profitSar = sarAmount - sarAmountNeededBlackMarket; // The saved SAR is your profit
             let profitUsd = profitSar * sarToUsdRate; // Convert profit to USD
@@ -104,6 +114,7 @@
             document.getElementById('profitSar').value = numberWithCommas(profitSar.toFixed(2).replace(/\.00/g, '')) + ' ر.س';
             document.getElementById('profitUsd').value = numberWithCommas(profitUsd.toFixed(2).replace(/\.00/g, '')) + ' $';
             document.getElementById('percentageProfit').value = numberWithCommas(percentageProfit.toFixed(2).replace(/\.00/g, '')) + '%';
+            document.getElementById('priceDifferenceEgp').value = numberWithCommas(priceDifferenceEgp.toFixed(2).replace(/\.00/g, '')) + ' ج.م';
         }
     </script>
 
